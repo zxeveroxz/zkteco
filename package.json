@@ -1,0 +1,23 @@
+{
+  "name": "zkteco",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app3.js",
+    "dev2": "nodemon mysql.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "mysql2": "^2.3.3",
+    "sleep-promise": "^9.1.0",
+    "zklib-js": "^1.3.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "description": ""
+}
