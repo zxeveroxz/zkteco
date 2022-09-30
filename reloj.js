@@ -16,13 +16,16 @@ const conexion = async () => {
 conexion();
 
 const registrar = async(datos)=>{        
+
         let u = await zkInstance.setUser(datos.uid, datos.userid, datos.name, datos.password+'', datos.role, datos.cardno);
-        console.log('user registrado ',u, datos.userid);    
+        //console.log('user registrado ',u, datos.userid);    
+        if(u!=false)
+            return true;
 }
 
-const listar = async(datos)=>{        
-    const users = await zkInstance.getUsers()
-    console.log(users)
+const listar = async()=>{        
+    const users = await zkInstance.getUsers();
+    return users;
 }
 
-module.exports={registrar}
+module.exports={registrar,listar}

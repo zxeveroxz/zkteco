@@ -2,11 +2,8 @@ require('dotenv').config();
 var sleep = require('sleep-promise');
 const { registrar } = require('./reloj');
 
-
-async function main() {
-    // get the client
+async function actualizar() {
     const mysql = require('mysql2/promise');
-    // create the connection
     const connection = await mysql.createConnection(
         {
             host: process.env.DB_HOSTNAME,
@@ -17,12 +14,14 @@ async function main() {
     //const [rows, fields] = await connection.execute('SELECT * FROM `tbl_participantes` WHERE `name` = ? AND `age` > ?', ['Morty', 14]);
     const [rows, fields] = await connection.execute('SELECT * FROM `tbl_participantes`', []);
 
-    rows.forEach(async (row, i) => {
-        await sleep(100 * i);
+    await rows.forEach(async (row, i) => {
+        //await sleep(100 * i);
         let datos = `${row.pat.substring(0, 10)} ${row.mat.substring(0, 1)}. ${row.nombres.substring(0, 10)}`;
         let data = { uid: row.idx + 100, userid: row.nro_doc, name: datos.toUpperCase(), password: '', role: 0, cardno: 0 };
-        await registrar(data); 
+        let r = await registrar(data);  
     });
-} 
- 
-main()
+    return "Actualizacion Completa...";
+}  
+//actualizar();
+
+module.exports = {actualizar}
