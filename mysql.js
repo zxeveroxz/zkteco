@@ -2,9 +2,11 @@ require('dotenv').config();
 var sleep = require('sleep-promise');
 const { registrar } = require('./reloj');
 
+const mysql = require('mysql2/promise');
+let connection = null;
 async function actualizar() {
-    const mysql = require('mysql2/promise');
-    const connection = await mysql.createConnection(
+    
+    connection = await mysql.createConnection(
         {
             host: process.env.DB_HOSTNAME,
             user: process.env.DB_USER,
@@ -22,6 +24,12 @@ async function actualizar() {
     });
     return "Actualizacion Completa...";
 }  
+
+async function buscar($dni){
+    const [row, fields] = await connection.execute('SELECT * FROM tbl_participantes where tip_doc=? and nro_doc=?', ['dni',$dni]);
+    return row;
+}
 //actualizar();
 
-module.exports = {actualizar}
+
+module.exports = {actualizar,buscar}
