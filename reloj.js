@@ -20,9 +20,7 @@ const conexion = async () => {
             } catch (error) {
                 console.log(error);
             }
-
-
-        })
+        });
 
     } catch (e) {
         console.log("Error en la conexion de reloj");
