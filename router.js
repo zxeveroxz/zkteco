@@ -11,7 +11,7 @@ router.use((req, res, next) => {
   })
   // define the home page route
   router.get('/', (req, res) => {
-    res.send('Birds home page')
+    res.send('PAGINA DE INICIO - Birds home page')
   })
   // define the about route
   router.get('/about', (req, res) => {

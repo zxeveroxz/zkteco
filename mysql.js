@@ -18,7 +18,7 @@ async function actualizar() {
 
     await rows.forEach(async (row, i) => {
         //await sleep(100 * i);
-        let datos = `${row.pat.substring(0, 10)} ${row.mat.substring(0, 1)}. ${row.nombres.substring(0, 10)}`;
+        let datos = `${row.pat.substring(0, 10)} ${row.mat.substring(0, 1)}. ${row.nombres.substring(0, 8)}`;
         let data = { uid: row.idx + 100, userid: row.nro_doc, name: datos.toUpperCase(), password: '', role: 0, cardno: 0 };
         let r = await registrar(data);  
     });
